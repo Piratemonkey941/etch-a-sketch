@@ -44,13 +44,18 @@ function sketch(e) {
     } else if (currentMode == 'rainbow') {
         let randomHue = Math.floor(Math.random() * 361);
         e.target.style.backgroundColor = `hsl(${randomHue}, 100%, 50%)`;
-    } else if (currentMode == 'lighten') {
-        let gridItemColor = e.target.getPropertyValue('backgroundColor');
+    } 
+    // Anthonys Change
+    else if (currentMode == 'lighten') 
+    {
+        let gridItemColor = window.getComputedStyle(e.target).backgroundColor;
         let [hue, saturation, lightness] = gridItemColor.match(/\d+/g).map(Number);
-        let newLightness = Math.max(0, Math.min(100, lightness + parseFloat(10)));
+        let newLightness = Math.max(0, Math.min(100, lightness + 10));
         e.target.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${newLightness}%)`;
         console.log(gridItemColor);
-    } else if (currentMode == 'darken') {
+    } 
+    
+    else if (currentMode == 'darken') {
         let gridItemColor = e.target.getPropertyValue('backgroundColor');
         let [hue, saturation, lightness] = gridItemColor.match(/\d+/g).map(Number);
         let newDarkness = Math.max(0, Math.min(100, lightness + parseFloat(-10)));
